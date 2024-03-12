@@ -28,4 +28,8 @@
 #       enabled: "ON"
 
 en:
-  hello: "Hello world"
+  hello: 'Hello world'
+  success: '%{entity} successfully created'
+  failed: 'Failed to create %{entity}'
+  course_list_success: 'Courses Successfully Retrieved'
+
