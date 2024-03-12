@@ -14,8 +14,7 @@ RSpec.describe Tutor, type: :request do
           response_body = JSON.parse(response.body)
           expect(response_body).to eq(
             {
-              "message" => "Failed to create tutor",
-              "error_message" => "Name can't be blank"
+              "message" => "Name can't be blank"
             }
           )
         end
@@ -27,8 +26,7 @@ RSpec.describe Tutor, type: :request do
           response_body = JSON.parse(response.body)
           expect(response_body).to eq(
             {
-              "error_message" => "Invalid Course",
-              "message" => ""
+              "message" => "Course not found",
             }
           )
         end
@@ -43,7 +41,7 @@ RSpec.describe Tutor, type: :request do
         tutor = Tutor.first
         expect(response_body).to eq(
           {
-            "message" => "Tutor successfully created",
+            "message" => "Tutor created successfully",
             "tutor_id" => tutor.id
           }
         )

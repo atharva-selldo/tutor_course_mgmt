@@ -29,7 +29,7 @@
 
 en:
   hello: 'Hello world'
-  success: '%{entity} successfully created'
+  success: '%{entity} created successfully'
   failed: 'Failed to create %{entity}'
-  course_list_success: 'Courses Successfully Retrieved'
+  course_list_success: 'Courses retrieved successfully'
 

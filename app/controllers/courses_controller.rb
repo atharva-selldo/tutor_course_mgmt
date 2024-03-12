@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
       response = { message: t('success', entity: 'Course'), data: course.id }
       status = 201
     else
-      response = { message: t('failed', entity: 'course'), error_message: course.errors.full_messages.join(',') }
+      response = { message: course.errors.full_messages.join(',') }
       status = 422
     end
 

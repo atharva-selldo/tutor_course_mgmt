@@ -10,7 +10,7 @@ class TutorsController < ApplicationController
       response = { message: t('success', entity: 'Tutor'), tutor_id: tutor.id }
       status = 201
     else
-      response = { message: t('failed', entity: 'tutor'), error_message: tutor.errors.full_messages.join(',') }
+      response = { message: tutor.errors.full_messages.join(',') }
       status = 422
     end
 
@@ -22,7 +22,7 @@ class TutorsController < ApplicationController
   def find_course
     @course = Course.find_by(id: params[:course_id])
     if @course.blank?
-      render json: { message: '', error_message: 'Invalid Course' }
+      render json: { message: 'Course not found' }, status: 404
       nil
     end
   end

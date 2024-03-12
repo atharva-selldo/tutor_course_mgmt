@@ -12,8 +12,7 @@ RSpec.describe Course, type: :request do
         response_body = JSON.parse(response.body)
         expect(response_body).to eq(
           {
-            'message' => 'Failed to create course',
-            'error_message' => "Name can't be blank"
+            'message' => "Name can't be blank"
           }
         )
       end
@@ -27,7 +26,7 @@ RSpec.describe Course, type: :request do
         expect(response_body).to eq(
           {
             'data' => course.id,
-            'message' => 'Course successfully created'
+            'message' => 'Course created successfully'
           }
         )
       end
@@ -39,12 +38,12 @@ RSpec.describe Course, type: :request do
       context 'when params are valid' do
         it 'responds with success message and course details' do
           tutor
-          params = { page: 0, per_page: 1 }
-          get '/courses/index', params: params
+          params = { page: 1, per_page: 10 }
+          get '/courses/', params: params
           response_body = JSON.parse(response.body)
           expect(response_body).to eq(
             {
-              'message' => 'Courses Successfully Retrieved',
+              'message' => 'Courses retrieved successfully',
               'data' =>
               [
                 {
@@ -56,8 +55,8 @@ RSpec.describe Course, type: :request do
                   }]
                 }
               ],
-              'page' => 0,
-              'per_page' => 1,
+              'page' => 1,
+              'per_page' => 10,
               'total_courses' => 1
             }
           )
@@ -65,13 +64,13 @@ RSpec.describe Course, type: :request do
       end
 
       context 'when params are invalid or not present' do
-        it 'responds with success message and course details (considering page 0 and per_page 1)' do
+        it 'responds with success message and course details (considering page 1 and per_page 10)' do
           tutor
-          get '/courses/index'
+          get '/courses/'
           response_body = JSON.parse(response.body)
           expect(response_body).to eq(
             {
-              'message' => 'Courses Successfully Retrieved',
+              'message' => 'Courses retrieved successfully',
               'data' =>
                [
                  {
@@ -83,8 +82,8 @@ RSpec.describe Course, type: :request do
                    }]
                  }
                ],
-              'page' => 0,
-              'per_page' => 1,
+              'page' => 1,
+              'per_page' => 10,
               'total_courses' => 1
             }
           )
